@@ -1,0 +1,50 @@
+﻿@page
+@model Uploader.Pages.SignUpModel
+@{
+    ViewData["Title"] = "Account - Sign Up";
+}
+
+<div class="form col shadow">
+    <form method="post" enctype="multipart/form-data">
+
+        <div class="row row-cols-1 text-left text-light p-3">
+            <div class="col mb-2">Username:</div>
+            <div class="input-group mb-2">
+                <input class="form-control text-light border-info border-0 ml-3 mr-3"
+                       placeholder="Username..."
+                       type="text"
+                       asp-for="RegisterUser.Username" />
+            </div>
+            <div class="col"><span class="text-danger" asp-validation-for="RegisterUser.Username"></span></div>
+        </div>
+
+        <div class="row row-cols-1 text-left text-light p-3">
+            <div class="col mb-2">Password:</div>
+            <div class="input-group mb-2">
+                <input class="form-control text-light border-info border-0 ml-3 mr-3"
+                       placeholder="Password..."
+                       type="password"
+                       asp-for="RegisterUser.Password" />
+            </div>
+            <div class="col"><span class="text-danger" asp-validation-for="RegisterUser.Password"></span></div>
+        </div>
+
+        <div class="row row-cols-1 text-left text-light p-3">
+            <div class="col mb-2">Confirm password:</div>
+            <div class="input-group mb-2">
+                <input class="form-control text-light border-info border-0 ml-3 mr-3"
+                       placeholder="Confirm password..."
+                       type="password"
+                       asp-for="RegisterUser.ConfirmPassword" />
+            </div>
+            <div class="col"><span class="text-danger" asp-validation-for="RegisterUser.ConfirmPassword"></span></div>
+        </div>
+
+        <div class="row row-cols-1 text-left p-3"><div class="text-danger" asp-validation-summary="ModelOnly"></div></div>
+
+        <div class="form-submit row row-cols-1 text-center p-3">
+            <div class="col"><button class="btn" type="submit">Sign Up</button></div>
+        </div>
+
+    </form>
+</div>

@@ -1,0 +1,44 @@
+﻿@page 
+@model Uploader.Pages.PostModel
+@{
+    ViewData["Title"] = Model.Post.Title;
+}
+
+<div class="row row-cols-1 justify-content-center">
+
+    <div class="col p-3 p-sm-0 pt-sm-3 pb-sm-3">
+        <h1 class="text-light m-0">@Model.Post.Title</h1>
+    </div>
+
+
+    @switch (Model.Post.Type)
+    {
+        case "image":
+            <div class="col p-sm-0">
+                <img class="w-100" src="@Model.PostPath" />
+            </div>
+            break;
+        case "video":
+            <div class="col p-sm-0">
+                <video class="w-100" controls autoplay>
+                    <source src="@Model.PostPath" />
+                </video>
+            </div>
+            break;
+        case "text":
+            List<string> lines = System.IO.File.ReadAllLines(Model.PostPath).ToList();
+            <div class="col p-sm-0">
+                @foreach (string line in lines)
+                {
+                    <p class="text-light mb-0">@line</p>
+                }
+            </div>
+            break;
+        default:
+            break;
+    }
+
+
+
+
+</div>

@@ -1,0 +1,44 @@
+﻿@page
+@model Uploader.Pages.SearchModel
+@{
+    ViewData["Title"] = "Search";
+}
+
+<div class="d-flex justify-content-center">
+    <div class="row row-cols-1 justify-content-center post">
+
+        <div class="col text-light"><h2>Search Results:</h2></div>
+
+        @if (Model.Users[0].Count != 0)
+        {
+            for (int i = 0; i < Model.Users[0].Count; i++)
+            {
+                <a class="text-decoration-none post-link" asp-page="/user" asp-route-user="@Model.Users[0][i].UserName">
+                    <div class="col d-flex justify-content-center shadow user mb-3 p-0">
+                        <div class="profile-pic"></div>
+                        <div class="banner-pic"><span class="text-light align-self-end pb-1">@Model.Users[0][i]</span></div>
+                    </div>
+                </a>
+            }
+        }
+        else
+        {
+            <div class="col text-white-50"><h5>No Matches</h5></div>
+        }
+
+        <div class="col text-light"><h2>Other users:</h2></div>
+
+        @for (int i = 0; i < Model.Users[1].Count; i++)
+        {
+            <a class="text-decoration-none post-link" asp-page="/user" asp-route-user="@Model.Users[1][i].UserName">
+                <div class="col d-flex justify-content-center user shadow mb-3 p-0">
+                    <div class="profile-pic"></div>
+                    <div class="banner-pic"><span class="text-light align-self-end pb-1">@Model.Users[1][i]</span></div>
+                </div>
+            </a>
+
+        }
+
+    </div>
+
+</div>

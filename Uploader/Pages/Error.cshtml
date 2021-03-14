@@ -1,0 +1,24 @@
+﻿@page 
+@model Uploader.Pages.ErrorModel
+@{
+    ViewData["Title"] = RouteData.Values[Model.Status.ToString()];
+
+    switch (Model.Status)
+    {
+        case 404:
+            ViewData["ErrorMessage"] = "This page does not exist.";
+            break;
+        default:
+            ViewData["ErrorMessage"] = "ERROR";
+            break;
+
+    }
+}
+
+<div class="d-flex justify-content-center">
+    <h1 class="text-light">@ViewData["ErrorMessage"]</h1>
+</div>
+
+
+
+

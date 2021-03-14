@@ -1,0 +1,66 @@
+﻿@inject SignInManager<AccountUser> SignInManager;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar navbar-expand mb-3">
+            <div class="container justify-content-center">
+                <div class="navbar-brand align-self-start">
+                    <a class="nav-link text-light p-0" asp-page="/index">Up<span class="fa fa-upload mr-1 ml-1"></span>loader</a>
+                </div>
+
+                <form class="w-50 mr-3" method="post" enctype="multipart/form-data" asp-controller="Main" asp-action="SearchUser">
+                    <div class="input-group card-shadow">
+                        <div class="input-group-append"><button class="btn btn-dark" type="submit"><i class="fa fa-search fa-lg"></i></button></div>
+
+                        <input class="form-control border-0 w-50" type="text" placeholder="Search..." name="query"/>
+
+
+                    </div>
+                </form>
+
+                <ul class="navbar-nav">
+
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <form method="post" asp-controller="Main" asp-action="LogOut">
+                                <button class="btn btn-dark text-nowrap" type="submit">Log Out</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item mr-3"><a class="nav-link text-light text-nowrap p-0" asp-page="/account/logIn">Log In</a></li>
+                        <li class="nav-item"><a class="nav-link text-light text-nowrap p-0" asp-page="/account/signUp">Sign Up</a></li>
+                    }
+
+                </ul>
+
+            </div>
+        </nav>
+    </header>
+    <div class="d-flex justify-content-center container">
+        <main role="main" class="main pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

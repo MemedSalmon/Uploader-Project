@@ -1,0 +1,22 @@
+﻿@page "{user}"
+@model Uploader.Pages.UserModel
+@{
+    ViewData["Title"] = RouteData.Values["user"];
+}
+
+<div class="row justify-content-center">
+    <div class="col row row-cols-1 justify-content-center post p-0">
+        @for (int i = 0; i < Model.Posts.Count(); i++)
+        {
+            <div class="row row-cols-1 post-link shadow p-0">
+                <a class="col d-flex align-items-center text-light text-decoration-none h-100"
+                   asp-page="/post" asp-route-id="@Model.Posts[i].Id">
+                    <div class="col-8 text-nowrap overflow-hidden text-left"><h3 class="m-0">@Model.Posts[i].Title</h3></div>
+                    <div class="col-4 text-nowrap overflow-hidden text-left"><h3 class="m-0">@Model.Posts[i].Type</h3></div>
+                </a>
+                
+            </div>
+        }
+
+    </div>
+</div>
